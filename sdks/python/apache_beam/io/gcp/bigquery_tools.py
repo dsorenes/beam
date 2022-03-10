@@ -708,7 +708,8 @@ class BigQueryWrapper(object):
           service_call_metric.call(insert_error['errors'][0])
     except (ClientError, GoogleAPICallError) as e:
       # e.code.value contains the numeric http status code.
-      service_call_metric.call(e.code.value)
+      print(e)
+      service_call_metric.call(e.code)
       # Re-reise the exception so that we re-try appropriately.
       raise
     except HttpError as e:
